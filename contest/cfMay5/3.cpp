@@ -23,27 +23,49 @@ int main(){
         } else if(n==2){
             cout<<-1<<endl;
             continue;
-        } else if(n==3){
-            cout<<2<<" "<<9<<" "<<7<<endl;
-            cout<<4<<" "<<6<<" "<<3<<endl;
-            cout<<1<<" "<<8<<" "<<5<<endl;
-            continue;
         }
 
-        int**arr = new int*[pow(n,2)];
-        for(int i=0; i<pow(n,2); i++){
-            arr[i] = new int[pow(n,2)];
+        int**arr = new int*[n];
+        for(int i=0; i<n; i++){
+            arr[i] = new int[n];
         }
 
-        if(n%2==0){
-            for(int i=0; i<pow(n,2); i++){
-                for(int j=0; j<pow(n,2); j++){
-                    if(i%2==0){
-                        
-                    }
+       
+        long int k = 1;
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if((i+j)%2==0){
+                    arr[i][j]=k;
+                    k++;
                 }
-            }    
+            }
         }
 
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if((i+j)%2!=0){
+                    arr[i][j] = k;
+                    k++;
+                }
+            }
+            
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                cout<<arr[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        
+        
+        
     }
 }
