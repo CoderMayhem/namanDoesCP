@@ -1,34 +1,26 @@
-#include<iostream>
-#include<string>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-bool checkIfPresent(char ch, string str){
-    int a = str.find(ch);
-    
-    if(a==-1)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-    
+void solve() {
+  int n;
+  cin >> n;
+  map<int, int> a;
+  long long res = 0;
+  for (int i = 0; i < n; i++) {
+    int x;
+    cin >> x;
+    x -= i;
+    res += a[x];
+    a[x]++;
+  }
+  cout << res << endl;
 }
 
-
-int main(){
-
-    char ch = 'a';
-    string c;
-
-    if(checkIfPresent(ch,c)){
-        cout<<"True"<<endl;
-    }else
-    {
-        cout<<"False"<<endl;
-        cout<<c<<endl;
-    }
-    
+int main() {
+  int tests;
+  cin >> tests;
+  while (tests-- > 0) {
+    solve();
+  }
+  return 0;
 }
