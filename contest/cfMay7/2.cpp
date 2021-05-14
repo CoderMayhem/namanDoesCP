@@ -1,35 +1,25 @@
-//B. Nastia and a Good Array
+#include "bits/stdc++.h"
 
-#include<iostream>
-#include<algorithm>
 using namespace std;
 
-int main(){
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
 
-    int t;
-    cin>>t;
+    int q;
+    cin >> q;
 
-    while (t--)
-    {
-        long long int n;
-        cin>>n;
-
-        long long int arr[n];
-
-        //taking the array
-        for (long long int i = 0; i < n; i++)
-        {
-            cin>>arr[i];
+    while (q--) {
+        int n; cin >> n;
+        int x = 1e9 + 7, pos = -1;
+        for (int i = 0; i < n; ++i) {
+            int a; cin >> a;
+            if (a < x) x = a, pos = i;
         }
-
-        //Now that we've got an array, we have to make it a good one.
-        for (long long int i = 0; i < n; i++)
-        {
-               
+        cout << n - 1 << endl;
+        for (int i = 0; i < n; ++i) {
+            if (i == pos) continue;
+            cout << pos + 1 << ' ' << i + 1 << ' ' << x << ' ' << x + abs(i - pos) << "\n";
         }
-        
-
-        
     }
-    
 }
