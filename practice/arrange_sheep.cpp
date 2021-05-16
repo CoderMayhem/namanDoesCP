@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-long int getSumEven(long int arr[], long int startIndex, long int countLength, long long int sum, bool isLeft, long int end){
+long long int getSumEven(long int arr[], long int startIndex, long int countLength, long long int sum, bool isLeft, long int end){
     //base condition
     if(startIndex<0 || startIndex == end){
         return sum;
@@ -20,7 +20,7 @@ long int getSumEven(long int arr[], long int startIndex, long int countLength, l
     } 
 }
 
-long int getSumOdd(long int arr[], long int startIndex, long int countLength, long long int sum, bool isLeft, long int end){
+long long int getSumOdd(long int arr[], long int startIndex, long int countLength, long long int sum, bool isLeft, long int end){
     //base condition
     if(startIndex == 0 || startIndex== end){
         return sum;
