@@ -3,7 +3,7 @@
 using namespace std;
 
 bool isSorted(int arr[], int n);
-void sortSubarray(int arr[],int si, int ei);
+void partSort(int arr[], int N, int l, int r);
 int minSteps(int arr[], int n, int steps);
 
 int minSteps(int arr[], int n, int steps){
@@ -21,7 +21,7 @@ int minSteps(int arr[], int n, int steps){
             if(arr[j]<arr[n-i]){
                 continue;
             }else{
-                sortSubarray(arr, j, n-i);
+                partSort(arr,n, j,n-i);
                 steps++;
                 return minSteps(arr,n,steps);
                 flag = true;
@@ -33,9 +33,26 @@ int minSteps(int arr[], int n, int steps){
     }
 }
 
-void sortSubarray(int arr[],int si, int ei){
-    int l = ei-si;
-    sort(arr+si, arr+l);
+void partSort(int arr[], int N, int l, int r)
+{
+    // Temporary array
+    int temp[r - l + 1];
+    int j = 0;
+    for (int i = l; i <= r; i++) {
+        temp[j] = arr[i];
+        j++;
+    }
+
+    // Sort the temporary array
+    sort(temp, temp + r - l + 1);
+ 
+    // Modifying original array with
+    // temporary array elements
+    j = 0;
+    for (int i = l; i <= r; i++) {
+            arr[i] = temp[j];
+            j++;
+    }
 }
 
 bool isSorted(int arr[], int n){
