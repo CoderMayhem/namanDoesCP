@@ -1,88 +1,29 @@
-#include<iostream>
+/*To solve the problem, it is enough to consider several cases:
+
+1. if the array is already sorted, the answer is 0;
+2. if a[1]=1 (or a[n]=n), then you can sort the array in one operation by selecting the subarray [1,n−1] (or [2,n]);
+3. if a[1]=n and a[n]=1, you can perform the sequence of operations [1,n−1], [2,n] and [1,n−1] and sort the array on each of them (you can't do it faster since you can't move both n to position n and 1 to position 1 in only 2 operations);
+otherwise, the array can be sorted in 2 operations.*/
+
 #include <bits/stdc++.h>
+
 using namespace std;
 
-bool isSorted(int arr[], int n);
-void partSort(int arr[], int N, int l, int r);
-int minSteps(int arr[], int n, int steps);
-
-int minSteps(int arr[], int n, int steps){
-
-    //base condition
-    if(isSorted(arr,n)){
-        return steps;
-    }
-
-    bool flag = false;
-
-    for(int i =0; i<n; i++){
-        for (int j = 0; j < n-i; j++)
-        {
-            if(arr[j]<arr[n-i]){
-                continue;
-            }else{
-                partSort(arr,n, j,n-i);
-                steps++;
-                return minSteps(arr,n,steps);
-                flag = true;
-                break;
-            }   
-        }
-        if(flag)
-            break;
-    }
-}
-
-void partSort(int arr[], int N, int l, int r)
-{
-    // Temporary array
-    int temp[r - l + 1];
-    int j = 0;
-    for (int i = l; i <= r; i++) {
-        temp[j] = arr[i];
-        j++;
-    }
-
-    // Sort the temporary array
-    sort(temp, temp + r - l + 1);
- 
-    // Modifying original array with
-    // temporary array elements
-    j = 0;
-    for (int i = l; i <= r; i++) {
-            arr[i] = temp[j];
-            j++;
-    }
-}
-
-bool isSorted(int arr[], int n){
-    for(int i=1; i<n; i++){
-        if(arr[i]>=arr[i-1]){
-            continue;
-        }else{
-            return false;
-        }
-    }
-    return true;
-}
-
-int main(){
-    int t;
-    cin>>t;
-    
-    while (t--)
-    {
-        int n;
-        cin>>n;
-
-        int arr[n];
-
-        for (int i = 0; i < n; i++)
-        {
-            cin>>arr[i];
-        }
-
-        cout<<minSteps(arr,n,0)<<endl;
-    }
-    
+int main() {
+  int t;
+  scanf("%d", &t);
+  while (t--) {
+    int n;
+    scanf("%d", &n);
+    vector<int> a(n);
+    for (int &x : a) scanf("%d", &x);
+    int ans = 2;
+    if (is_sorted(a.begin(), a.end()))
+      ans = 0;
+    else if (a[0] == 1 || a[n - 1] == n)
+      ans = 1;
+    else if (a[0] == n && a[n - 1] == 1)
+      ans = 3;
+    printf("%d\n", ans);
+  }
 }
